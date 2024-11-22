@@ -1,0 +1,70 @@
+import { useState } from 'react'
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+
+export function ProductList() {
+  const [products, setProducts] = useState([
+    { id: 1, name: 'Product A', category: 'Electronics', price: 199.99 },
+    { id: 2, name: 'Product B', category: 'Clothing', price: 49.99 },
+    { id: 3, name: 'Product C', category: 'Home & Garden', price: 79.99 },
+  ])
+
+  const [newProduct, setNewProduct] = useState({ name: '', category: '', price: '' })
+
+  const handleInputChange = (e) => {
+    setNewProduct({ ...newProduct, [e.target.name]: e.target.value })
+  }
+
+  const handleAddProduct = () => {
+    setProducts([...products, { id: products.length + 1, ...newProduct }])
+    setNewProduct({ name: '', category: '', price: '' })
+  }
+
+  return (
+    <div className="space-y-4">
+      <h2 className="text-2xl font-bold">Product List</h2>
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead>Name</TableHead>
+            <TableHead>Category</TableHead>
+            <TableHead>Price</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {products.map((product) => (
+            <TableRow key={product.id}>
+              <TableCell>{product.name}</TableCell>
+              <TableCell>{product.category}</TableCell>
+              <TableCell>${product.price}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+      <div className="flex space-x-2">
+        <Input
+          placeholder="Name"
+          name="name"
+          value={newProduct.name}
+          onChange={handleInputChange}
+        />
+        <Input
+          placeholder="Category"
+          name="category"
+          value={newProduct.category}
+          onChange={handleInputChange}
+        />
+        <Input
+          placeholder="Price"
+          name="price"
+          type="number"
+          value={newProduct.price}
+          onChange={handleInputChange}
+        />
+        <Button onClick={handleAddProduct}>Add Product</Button>
+      </div>
+    </div>
+  )
+}
+
