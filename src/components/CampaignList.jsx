@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
-export default function CampaignList( {campaigns} ) {
-    console.log("CAMPAIGN", campaigns)
+export default function CampaignList({ campaigns }) {
   const [products, setProducts] = useState([]);
   const [newProduct, setNewProduct] = useState({ id: '', category: '', title: '', desc: '',  image: '', price: '' });
 
@@ -33,11 +32,11 @@ export default function CampaignList( {campaigns} ) {
           {campaigns.map((campaign) => (
             <tr key={campaign.id}>
               <td>{campaign.id}</td>
-              <td>{campaign.title}</td> {/* category */}
               <td>{campaign.title}</td>
-              <td>{campaign.title}</td> {/* desc */}
-              <td>{campaign.title}</td> {/* image */}
-              <td>Rp {campaign.title}</td> {/* price */}
+              <td>{campaign.title}</td>
+              <td>{campaign.title}</td>
+              <td>{campaign.title}</td>
+              <td>Rp{campaign.title}</td>
             </tr>
           ))}
         </tbody>

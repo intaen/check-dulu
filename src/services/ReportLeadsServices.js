@@ -6,7 +6,6 @@ const API_URL = 'https://jsonplaceholder.typicode.com/todos';
 const getTodos = async () => {
   try {
     const response = await axios.get(API_URL);
-    console.log("datanya : ", response.data)
     return response.data;
   } catch (error) {
     console.error('Error fetching todos:', error);

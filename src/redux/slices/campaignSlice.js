@@ -20,7 +20,7 @@ const campaignSlice = createSlice({
         })
         .addCase(fetchCampaignList.fulfilled, (state, action) => {
             state.loading = false;
-            state.campaignList = action.payload;
+            state.items = action.payload;
         })
         .addCase(fetchCampaignList.rejected, (state, action) => {
             state.loading = false;

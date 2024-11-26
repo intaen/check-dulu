@@ -68,6 +68,9 @@ button {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-family: "Outfit", sans-serif;
+  font-weight: 100;
+  font-style: normal;
 }
 
 button:hover {
@@ -87,3 +90,41 @@ button:hover {
   margin-bottom: 20px;
 }
 
+.auth_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f2f5;
+}
+
+.auth_form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.auth_input {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+.text {
+  flex: 1;
+  cursor: pointer;
+  text-align: center;
+  color: #000;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  font-family: "Outfit", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
