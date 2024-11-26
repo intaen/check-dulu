@@ -36,7 +36,7 @@ const Popup = ({ status, onStatusChange, onClose }) => {
   );
 };
 
-export function ReportLeads() {
+export default function ReportLeads() {
   const [leads, setLeads] = useState([]);
 
   const [showPopup, setShowPopup] = useState(false);
