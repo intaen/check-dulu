@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import ProductPage from './pages/ProductPage'
+import { Outlet } from 'react-router-dom';
 
 function App() {
   return (
       <div>
-          <ProductPage />
+          <Outlet/>
       </div>
     );
   }
