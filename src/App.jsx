@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './App.css'
-import { ProductList } from './components/ProductList';
-import { PriceList } from './components/PriceList';
+import { CampaignList } from './components/CampaignList';
+import { ReportLeads } from './components/ReportLeads';
 import './styles/Dashboard.css';
 
 function App() {
@@ -18,15 +18,15 @@ function App() {
             Products
           </button>
           <button
-            className={`tab ${activeTab === 'prices' ? 'active' : ''}`}
-            onClick={() => setActiveTab('prices')}
+            className={`tab ${activeTab === 'report' ? 'active' : ''}`}
+            onClick={() => setActiveTab('report')}
           >
-            Prices
+            Report
           </button>
         </div>
         <div className="tab-content">
-          {activeTab === 'products' && <ProductList />}
-          {activeTab === 'prices' && <PriceList />}
+          {activeTab === 'products' && <CampaignList />}
+          {activeTab === 'report' && <ReportLeads />}
         </div>
       </div>
     );

@@ -50,23 +50,23 @@ export function CampaignList() {
         />
         <input
            type="Title"
-                  placeholder="Title"
-                  name="title"
-                  value={newProduct.title}
-                  onChange={handleInputChange}
-            />
-            <input
-                       type="Desc"
-                              placeholder="Desc"
-                              name="desc"
-                              value={newProduct.desc}
-                              onChange={handleInputChange}
-                        />
-                        <input
-                                   type="Image"
+           placeholder="Title"
+           name="title"
+           value={newProduct.title}
+           onChange={handleInputChange}
+        />
+        <input
+            type="Desc"
+             placeholder="Desc"
+             name="desc"
+             value={newProduct.desc}
+             onChange={handleInputChange}
+        />
+        <input
+             type="Image"
                                           placeholder="Image"
                                           name="image"
-                                          value={newProduct.title}
+                                          value={newProduct.image}
                                           onChange={handleInputChange}
                                     />
         <input

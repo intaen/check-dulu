@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
 
-export function ProductList() {
-  const [products, setProducts] = useState([
-    { id: 1, name: 'Product A', category: 'Electronics', price: 199.99 },
-    { id: 2, name: 'Product B', category: 'Clothing', price: 49.99 },
-    { id: 3, name: 'Product C', category: 'Home & Garden', price: 79.99 },
-  ]);
+export function CampaignList() {
+  const [products, setProducts] = useState([]);
 
   const [newProduct, setNewProduct] = useState({ name: '', category: '', price: '' });
 
@@ -24,16 +20,21 @@ export function ProductList() {
       <table>
         <thead>
           <tr>
-            <th>Name</th>
+            <th>CampaignID</th>
             <th>Category</th>
+            <th>Title</th>
+            <th>Desc</th>
+            <th>Image</th>
             <th>Price</th>
           </tr>
         </thead>
         <tbody>
           {products.map((product) => (
             <tr key={product.id}>
-              <td>{product.name}</td>
               <td>{product.category}</td>
+              <td>{product.title}</td>
+              <td>{product.desc}</td>
+              <td>{product.image}</td>
               <td>${product.price}</td>
             </tr>
           ))}
@@ -42,18 +43,32 @@ export function ProductList() {
       <div>
         <input
           type="text"
-          placeholder="Name"
-          name="name"
-          value={newProduct.name}
-          onChange={handleInputChange}
-        />
-        <input
-          type="text"
           placeholder="Category"
           name="category"
           value={newProduct.category}
           onChange={handleInputChange}
         />
+        <input
+           type="Title"
+           placeholder="Title"
+           name="title"
+           value={newProduct.title}
+           onChange={handleInputChange}
+        />
+        <input
+            type="Desc"
+             placeholder="Desc"
+             name="desc"
+             value={newProduct.desc}
+             onChange={handleInputChange}
+        />
+        <input
+             type="Image"
+             placeholder="Image"
+             name="image"
+             value={newProduct.image}
+                                          onChange={handleInputChange}
+                                    />
         <input
           type="number"
           placeholder="Price"
