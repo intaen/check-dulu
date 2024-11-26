@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-export function ReportLeads() {
+export default function ReportLeads() {
   const [leads, setLeads] = useState([]);
 
   useEffect(() => {
