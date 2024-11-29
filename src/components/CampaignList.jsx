@@ -1,19 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 export default function CampaignList({ campaigns }) {
-  const [products, setProducts] = useState([]);
-  const [newProduct, setNewProduct] = useState({ id: '', category: '', title: '', desc: '',  image: '', price: '' });
-
-
-  const handleInputChange = (e) => {
-    setNewProduct({ ...newProduct, [e.target.name]: e.target.value });
-  };
-
-  const handleAddProduct = () => {
-    setProducts([...products, { id: products.length + 1, ...newProduct }]);
-    setNewProduct({ id: '', category: '', title: '', desc: '',  image: '', price: '' });
-  };
-
   return (
     <div>
       <h2>Campaign List</h2>
@@ -41,52 +28,7 @@ export default function CampaignList({ campaigns }) {
           ))}
         </tbody>
       </table>
-      <div>
-        <input
-          type="text"
-          placeholder="Campaign ID"
-          name="id"
-          value={newProduct.id}
-          onChange={handleInputChange}
-        />
-        <input
-          type="text"
-          placeholder="Category"
-          name="category"
-          value={newProduct.category}
-          onChange={handleInputChange}
-        />
-        <input
-           type="text"
-           placeholder="Title"
-           name="title"
-           value={newProduct.title}
-           onChange={handleInputChange}
-        />
-        <input
-            type="text"
-            placeholder="Desc"
-            name="desc"
-            value={newProduct.desc}
-            onChange={handleInputChange}
-        />
-        <input
-            type="text"
-            placeholder="Image"
-            name="image"
-            value={newProduct.image}
-            onChange={handleInputChange}
-        />
-        <input
-          type="number"
-          placeholder="Price"
-          name="price"
-          value={newProduct.price}
-          onChange={handleInputChange}
-        />
-        <button onClick={handleAddProduct}>Add Campaign</button>
-      </div>
-    </div>
+         </div>
   );
 }
 

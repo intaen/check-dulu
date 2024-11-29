@@ -1,14 +1,18 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getListCampaign } from '../../services/campaignList';
+import { getListCampaign, addCampaign } from '../../services/campaignList';
 
-export const fetchCampaignList = createAsyncThunk('campaign/fetchCampaignList', async () => {
+export const fetchCampaignList = createAsyncThunk('campaigns/fetchCampaignList', async () => {
     return await getListCampaign();
+})
+
+export const addCampaignThunk = createAsyncThunk('campaigns/addCampaign', async (data) => {
+    return await addCampaign(data);
 })
 
 const campaignSlice = createSlice({
     name: 'campaigns',
     initialState: {
-        items: [],
+        items: [{}],
         loading: false,
         error: null
     },
@@ -25,6 +29,9 @@ const campaignSlice = createSlice({
         .addCase(fetchCampaignList.rejected, (state, action) => {
             state.loading = false;
             state.error = "Failed to fetch data";
+        })
+        .addCase(addCampaignThunk.fulfilled, (state, action) => {
+            state.items.push(action.payload);
         });
     },
 });

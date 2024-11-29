@@ -3,7 +3,7 @@ import { login } from "../../services/authService";
 
 
 export const fetchLogin = createAsyncThunk('auth/fetchLogin', async (data) => {
-    return await login(data.username, data.password);
+    return await login(data.email, data.password);
 })
 
 const authSlice = createSlice({

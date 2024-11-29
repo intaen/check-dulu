@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import CampaignList from '../components/CampaignList';
 import ReportLeads from '../components/ReportLeads';
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchCampaignList } from '../redux/slices/campaignSlice';
+import { fetchCampaignList, addCampaignThunk } from '../redux/slices/campaignSlice';
 import '../styles/Dashboard.css';
+import CampaignForm from '../components/CampaignForm';
 
 export default function ProductPage() {
     const dispatch = useDispatch();
@@ -14,6 +15,10 @@ export default function ProductPage() {
     useEffect(() => {
       dispatch(fetchCampaignList());
     }, []);
+
+    const handleAddCampaign = async (data) => {
+      dispatch(addCampaignThunk(data));
+  }
 
     return (
         <div className="dashboard">
@@ -33,7 +38,8 @@ export default function ProductPage() {
                   </button>
                 </div>
                 <div className="tab-content">
-                  {activeTab === 'campaign' && <CampaignList campaigns={campaigns} />}
+                  {activeTab === 'campaign' && <CampaignList campaigns={campaigns}/>}
+                  <CampaignForm addCampaign={handleAddCampaign} />
                   {activeTab === 'report' && <ReportLeads />}
                 </div>
         </div>
