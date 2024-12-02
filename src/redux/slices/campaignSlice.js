@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getListCampaign, addCampaign } from '../../services/campaignList';
+import { addCampaign, getListCampaign } from '../../services/campaignService';
+
 
 export const fetchCampaignList = createAsyncThunk('campaigns/fetchCampaignList', async () => {
     return await getListCampaign();
