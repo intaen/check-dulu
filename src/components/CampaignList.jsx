@@ -1,15 +1,6 @@
 import React from 'react';
-import { useState } from 'react';
-import Editor from 'react-simple-wysiwyg';
-
 
 export default function CampaignList({ campaigns }) {
-  const [html, setHtml] = useState('');
-
-  function onChange(e) {
-    setHtml(e.target.value);
-  }
-  
   return (
     <div>
       <h2>Campaign List</h2>
