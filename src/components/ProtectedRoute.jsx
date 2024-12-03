@@ -1,8 +1,12 @@
 import { Navigate } from "react-router-dom";
-export const ProtectedRoute = ({ children }) => {
-    const isAuthenticated = localStorage.getItem('isAuthenticated');
+import Cookies from "universal-cookie";
 
-    if (!isAuthenticated){
+export const ProtectedRoute = ({ children }) => {
+    const cookies = new Cookies();
+    const accessToken = cookies.get('fortune-cookie');
+    // cookies.remove('fortune-cookie');
+
+    if ((accessToken == undefined)) {
         return <Navigate to="/" />
     }
  

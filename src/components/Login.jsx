@@ -1,6 +1,7 @@
 import React from "react";
-import { useNavigate } from 'react-router-dom';
+import { createCookieSessionStorage, useNavigate } from 'react-router-dom';
 import { login } from "../services/authService";
+import Cookies from 'universal-cookie';
 
 export default function Login() {
     const [username, setUsername] = React.useState('');
@@ -12,7 +13,8 @@ export default function Login() {
 
         const result = await login(username, password);
         if (result.status == 200) {
-            localStorage.setItem('isAuthenticated', 'true')
+            const cookies = new Cookies();
+            cookies.set('fortune-cookie', result.data, { path: '/', maxAge: 1800 });
             navigate('/home');
         }  else {
             alert("Username/Password salah");

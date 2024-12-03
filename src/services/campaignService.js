@@ -1,9 +1,24 @@
 import axios from 'axios';
+import Cookies from 'universal-cookie';
 
 const API_V1 = 'https://jsonplaceholder.typicode.com/todos';
 const API_V2 = 'http://localhost:8080/api/v1';
 const CAMPAIGN_GET = '/campaign';
 const CAMPAIGN_ADD = '/campaign/create';
+
+
+
+export const authHeader = () => {
+  const cookies = new Cookies();
+  const accessToken = cookies.get('fortune-cookie');
+  if ((accessToken != undefined)) {
+    return {
+      ...API_HEADERS,
+      "Authorization": `Bearer ${accessToken}`
+    }
+  }
+  return {}
+}
 
 export const getListCampaignv1 = async () => {
     try {
@@ -33,11 +48,7 @@ export const addCampaignv1 = async (data) => {
 
 export const getListCampaign = async () => {
   try {
-      const response = await axios.get(API_V2+CAMPAIGN_GET, {
-        headers: {
-          'Authorization': 'Bearer '+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJCQUYiLCJleHAiOjE3MzI4OTU3NTEsImlhdCI6MTczMjg3Nzc1MSwiaWQiOiJmOTUxZGEzYy1kMmZhLTQ4YzItYjYxZC0xOGQ1ZmNkMWZjMDQifQ.ndLU6eI5gkwJFw2Nr1c7GFpwaq_cyFvQlKOWZJ3kuug",
-        },
-      });
+      const response = await axios.get(API_V2+CAMPAIGN_GET, authHeader);
       return response.data.data;
     } catch (error) {
       console.error('Error fetching campaign:', error);
@@ -58,9 +69,8 @@ export const addCampaign = async (campaign) => {
   data.append("product_price", campaign.product_price);
 
   try {
-    const response = await axios.post(`${API_V2+CAMPAIGN_ADD}`, data, {
+    const response = await axios.post(`${API_V2+CAMPAIGN_ADD}`, data, authHeader, {
       headers: {
-        'Authorization': 'Bearer '+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJCQUYiLCJleHAiOjE3MzI4OTU3NTEsImlhdCI6MTczMjg3Nzc1MSwiaWQiOiJmOTUxZGEzYy1kMmZhLTQ4YzItYjYxZC0xOGQ1ZmNkMWZjMDQifQ.ndLU6eI5gkwJFw2Nr1c7GFpwaq_cyFvQlKOWZJ3kuug",
         "Content-Type": "multipart/form-data"
       },
       method: "POST"

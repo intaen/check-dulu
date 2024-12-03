@@ -13,7 +13,7 @@ export const addCampaignThunk = createAsyncThunk('campaigns/addCampaign', async 
 const campaignSlice = createSlice({
     name: 'campaigns',
     initialState: {
-        items: [{}],
+        items: [],
         loading: false,
         error: null
     },
