@@ -19,26 +19,16 @@ export default function CampaignForm({ addCampaign }) {
   };
 
   return (
-      <div>
-        <input
-          type="text"
-          placeholder="Category"
-          name="category"
+        <form onSubmit={handleInputChange}>
+
+        <select
+          name='category'
           value={newProduct.category}
-          onChange={(e) => setNewProduct({ ...newProduct, [e.target.name]: e.target.value })}
-        />
-        <input
-           type="text"
-           placeholder="Title"
-           name="campaign_name"
-           value={newProduct.campaign_name}
-           onChange={(e) => setNewProduct({ ...newProduct, [e.target.name]: e.target.value })}
-        />
-        <Editor
-            placeholder="Desc"
-            name="campaign_desc"
-            value={newProduct.campaign_desc}
-            onChange={(e) => setNewProduct({ ...newProduct, [e.target.name]: e.target.value })}/>
+          onChange={(e) => setNewProduct({ ...newProduct, [e.target.name]: e.target.value })}>
+          <option value="MOBIL">Car</option>
+          <option value="MOTOR">Motorbike</option>
+        </select>
+
         <input
           type="text"
           placeholder="Product Desc"
@@ -46,13 +36,29 @@ export default function CampaignForm({ addCampaign }) {
           value={newProduct.product_desc}
           onChange={(e) => setNewProduct({ ...newProduct, [e.target.name]: e.target.value })}
         />
+
         <input
           type="number"
-          placeholder="Price"
+          placeholder="Product Price"
           name="product_price"
           value={newProduct.product_price}
           onChange={(e) => setNewProduct({ ...newProduct, [e.target.name]: e.target.value })}
         />
+
+        <input
+           type="text"
+           placeholder="Campaign Name"
+           name="campaign_name"
+           value={newProduct.campaign_name}
+           onChange={(e) => setNewProduct({ ...newProduct, [e.target.name]: e.target.value })}
+        />
+
+        <Editor
+            placeholder="Campaign Desc"
+            name="campaign_desc"
+            value={newProduct.campaign_desc}
+            onChange={(e) => setNewProduct({ ...newProduct, [e.target.name]: e.target.value })}/>
+        
         <input
             type="file"
             accept="image/*"
@@ -61,6 +67,7 @@ export default function CampaignForm({ addCampaign }) {
             name="file"
             onChange={handleFileChange}
         />
+
         <label htmlFor="contained-button-file">
           <Button variant="contained" color="primary" component="span">
             Upload
@@ -72,8 +79,8 @@ export default function CampaignForm({ addCampaign }) {
             </div>
         )}
         
-        <button onClick={handleInputChange}>Add Campaign</button>
-      </div>
+        <button type='submit'>Add Campaign</button>
+      </form>
   );
 }
 

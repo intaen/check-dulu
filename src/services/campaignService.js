@@ -2,11 +2,9 @@ import axios from 'axios';
 import Cookies from 'universal-cookie';
 
 const API_V1 = 'https://jsonplaceholder.typicode.com/todos';
-const API_V2 = 'http://localhost:8080/api/v1';
+const API_V2 = 'http://188.166.231.97:8080/api/v1';
 const CAMPAIGN_GET = '/campaign';
 const CAMPAIGN_ADD = '/campaign/create';
-
-
 
 export const authHeader = () => {
   const cookies = new Cookies();
