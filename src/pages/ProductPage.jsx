@@ -19,7 +19,6 @@ export default function ProductPage() {
       if (activeTab === 'campaign') {
         dispatch(fetchCampaignThunk());
       } else if (activeTab === 'report') {
-        console.log("LEADS")
         dispatch(fetchReportThunk());
       }
     }, [activeTab]);
