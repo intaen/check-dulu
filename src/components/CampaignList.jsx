@@ -1,93 +1,35 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-export default function CampaignList( {campaigns} ) {
-    console.log("CAMPAIGN", campaigns)
-  const [products, setProducts] = useState([]);
-  const [newProduct, setNewProduct] = useState({ id: '', category: '', title: '', desc: '',  image: '', price: '' });
-
-
-  const handleInputChange = (e) => {
-    setNewProduct({ ...newProduct, [e.target.name]: e.target.value });
-  };
-
-  const handleAddProduct = () => {
-    setProducts([...products, { id: products.length + 1, ...newProduct }]);
-    setNewProduct({ id: '', category: '', title: '', desc: '',  image: '', price: '' });
-  };
-
+export default function CampaignList({ campaigns }) {
   return (
     <div>
       <h2>Campaign List</h2>
       <table>
         <thead>
           <tr>
-            <th>Campaign ID</th>
             <th>Category</th>
-            <th>Title</th>
-            <th>Desc</th>
-            <th>Image</th>
-            <th>Price</th>
+            <th>Campaign Name</th>
+            <th>Campaign Desc</th>
+            <th>Product Image</th>
+            <th>Product Price</th>
           </tr>
         </thead>
         <tbody>
-          {campaigns.map((campaign) => (
-            <tr key={campaign.id}>
-              <td>{campaign.id}</td>
-              <td>{campaign.title}</td> {/* category */}
-              <td>{campaign.title}</td>
-              <td>{campaign.title}</td> {/* desc */}
-              <td>{campaign.title}</td> {/* image */}
-              <td>Rp {campaign.title}</td> {/* price */}
+          {campaigns.map((campaign) => {
+            const desc = campaign.campaign_desc
+            return (
+            <tr key={campaign.campaign_id}>
+              <td>{campaign.category}</td>
+              <td>{campaign.campaign_name}</td>
+              <td dangerouslySetInnerHTML={{__html: desc}}></td>
+              <td><img height={100} width={100} src={campaign.product_image}/></td>
+              <td>Rp{campaign.product_price}</td>
             </tr>
-          ))}
+          )}
+        )}
         </tbody>
       </table>
-      <div>
-        <input
-          type="text"
-          placeholder="Campaign ID"
-          name="id"
-          value={newProduct.id}
-          onChange={handleInputChange}
-        />
-        <input
-          type="text"
-          placeholder="Category"
-          name="category"
-          value={newProduct.category}
-          onChange={handleInputChange}
-        />
-        <input
-           type="text"
-           placeholder="Title"
-           name="title"
-           value={newProduct.title}
-           onChange={handleInputChange}
-        />
-        <input
-            type="text"
-            placeholder="Desc"
-            name="desc"
-            value={newProduct.desc}
-            onChange={handleInputChange}
-        />
-        <input
-            type="text"
-            placeholder="Image"
-            name="image"
-            value={newProduct.image}
-            onChange={handleInputChange}
-        />
-        <input
-          type="number"
-          placeholder="Price"
-          name="price"
-          value={newProduct.price}
-          onChange={handleInputChange}
-        />
-        <button onClick={handleAddProduct}>Add Campaign</button>
-      </div>
-    </div>
+         </div>
   );
 }
 

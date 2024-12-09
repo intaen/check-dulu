@@ -1,8 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getListCampaign } from '../../services/campaignList';
+import { addCampaign, getListCampaign } from '../../services/campaignService';
 
-export const fetchCampaignList = createAsyncThunk('campaign/fetchCampaignList', async () => {
+export const fetchCampaignThunk = createAsyncThunk('campaigns/fetchCampaignList', async () => {
     return await getListCampaign();
+})
+
+export const addCampaignThunk = createAsyncThunk('campaigns/addCampaign', async (data) => {
+    return await addCampaign(data);
 })
 
 const campaignSlice = createSlice({
@@ -15,16 +19,19 @@ const campaignSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-        .addCase(fetchCampaignList.pending, (state) => {
+        .addCase(fetchCampaignThunk.pending, (state) => {
             state.loading = true;
         })
-        .addCase(fetchCampaignList.fulfilled, (state, action) => {
+        .addCase(fetchCampaignThunk.fulfilled, (state, action) => {
             state.loading = false;
-            state.campaignList = action.payload;
+            state.items = action.payload;
         })
-        .addCase(fetchCampaignList.rejected, (state, action) => {
+        .addCase(fetchCampaignThunk.rejected, (state, action) => {
             state.loading = false;
             state.error = "Failed to fetch data";
+        })
+        .addCase(addCampaignThunk.fulfilled, (state, action) => {
+            state.items.push(action.payload);
         });
     },
 });

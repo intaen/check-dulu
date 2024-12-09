@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import {getTodos, deleteTodo, updateTodo, createTodo } from '../services/ReportLeadsServices';
 
 // Popup Component
 const Popup = ({ status, onStatusChange, onClose }) => {
@@ -37,13 +36,10 @@ const Popup = ({ status, onStatusChange, onClose }) => {
 };
 
 export default function ReportLeads() {
-  const [leads, setLeads] = useState([]);
-
   const [showPopup, setShowPopup] = useState(false);
   const [status, setStatus] = useState("Pending");
 
   const [todos, setTodos] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   const togglePopup = () => {
     setShowPopup(!showPopup);
@@ -52,26 +48,6 @@ export default function ReportLeads() {
   const handleStatusChange = (event) => {
     setStatus(event.target.value);
   };
-
-  useEffect(() => {
-    const fetchTodos = async () => {
-      try {
-        const data = await getTodos();
-        console.log('Fetched Todos:', data); // Log untuk memastikan data ada
-        setTodos(data);
-      } catch (error) {
-        console.error('Failed to fetch todos:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-  
-    fetchTodos();
-  }, []);
-
-  useEffect(() => {
-    console.log('Todos state actually updated:', todos);
-  }, [todos]);
  
   return (
     <div className="report-leads">
